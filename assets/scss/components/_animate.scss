@@ -1,0 +1,247 @@
+.animate {
+  max-width: 100%;
+  li {
+    overflow: hidden
+  }
+  img {
+    max-width: 100%;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+
+  }
+  div {
+    position: relative;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      right: 5px;
+      bottom: 15px;
+      background: rgba(20, 22, 26, 0.75);
+      z-index: -1;
+    }
+  }
+
+}
+
+.animation-bg .animate {
+  display: none;
+}
+
+ // The animations: its names and settings to call from animation mixin
+  @include shake(2px, 2px, 3deg, 'shake-rotate', 2);
+
+/*-------------------- Tablet & Desktop version*/
+@include media-query(lap-and-up) {
+  .hover-on .done .shake {	 
+      @include vendorize(animation-play-state, paused, webkit ms spec);
+      @include vendorize(transform-origin, center center, webkit ms spec);
+	&:hover {
+      @include animation(shake-rotate);
+	}
+  }
+ 
+    
+  .hover-on #animate-el-1 {
+    &.done:hover {
+      @include vendorize(transform, rotate(360deg), ms webkit moz spec);
+    }
+  }
+  %animation-finish {
+    @include vendorize(transform, translate(0, 0), ms webkit moz spec);
+  }
+  .animate {
+    li {
+      float: left;
+      @include vendor-value(transition, transform 2s, opacity 2s);
+      padding-right: 5%;
+    }
+    &.fade-in > * {
+      opacity: 0;
+      &.done {
+        opacity: 1;
+      }
+    }
+  }
+
+  #animate-el-1 {
+    margin-top: 5%;
+    margin-left: 6%;
+    max-width: 18%;
+    opacity: 0;
+    &.done {
+      opacity: 1;
+    }
+  }
+
+  #animate-el-2 {
+    clear: right;
+    max-width: 25%;
+    @include vendorize(transform, translate(-50px, 0), webkit ms moz spec);
+    &.done {
+      @extend %animation-finish;
+    }
+  }
+  #animate-el-3 {
+    position: relative;
+    margin-top: -20%;
+    max-width: 45%;
+    @include vendorize(transform, translate(0, -100px), webkit ms moz spec);
+    &.done {
+      @extend %animation-finish;
+
+    }
+  }
+
+  #animate-el-4 {
+    margin-top: 10%;
+    max-width: 15%;
+    @include vendorize(transform, translate(50px, 0), webkit ms moz spec);
+    &.done {
+      @extend %animation-finish;
+    }
+  }
+  #animate-el-5 {
+    margin-top: 7%;
+    max-width: 15%;
+    @include vendorize(transform, translate(100px, 0), webkit ms moz spec);
+    &.done {
+      @extend %animation-finish;
+    }
+  }
+  #animate-el-6 {
+    @include vendorize(transform, translate(0, 200px), webkit ms moz spec);
+    &.done {
+      @extend %animation-finish;
+    }
+  }
+  #animate-el-7 {
+    margin-top: 50px;
+    margin-left: -50px;
+    @include vendorize(transform, translate(0, 200px), webkit ms moz spec);
+    &.done {
+      @extend %animation-finish;
+    }
+  }
+}
+
+/*--------------- Tablet version - portrait*/
+@include media-query(portrait) {
+
+  .animate {
+    max-width: 75%;
+    margin: 0 auto;
+  }
+
+  #animate-el-1 {
+    margin-top: 20%;
+    max-width: 30%;
+  }
+  #animate-el-2 {
+    padding-right: 10%;
+    max-width: 50%;
+    margin-top: -10%;
+  }
+  #animate-el-4 {
+    max-width: 25%;
+  }
+  #animate-el-5 {
+    max-width: 25%;
+  }
+  #animate-el-3 {
+    display: none;
+  }
+}
+
+/*--------------- Mobile version*/
+@include media-query(palm) {
+  .animate {
+    image-rendering: optimizeQuality;
+    max-width: 50%;
+    margin: 0 auto 30px auto;
+    li {
+      vertical-align: middle;
+      display: inline-block;
+      float: none;
+      position: relative;
+      .no-svg &{
+        display: none;
+      }
+    }
+
+  }
+  #animate-el-2 div:before, #animate-el-4 div:before {
+    background: #404045;
+  }
+  #animate-el-2 {
+    z-index: -3;
+  }
+  #animate-el-4 {
+    z-index: 0;
+  }
+  #animate-el-1, #animate-el-5, #animate-el-3 {
+    display: none;
+  }
+  #animate-el-2 {
+    padding-right: 0;
+    max-width: 70%;
+  }
+  #animate-el-4 {
+    margin-left: -30px;
+    max-width: 30%;
+  }
+
+}
+
+/*------------ Desktop wide -------------*/
+@include media-query(desk-wide) {
+  .animation-bg {
+    position: relative;
+    padding-bottom: 200px;
+    & + *{
+     position: relative;
+    }
+    .animate {
+      display: block;
+      position: absolute;
+      left: 50px;
+      li {
+        padding-right: 0;
+        @include vendorize(transition-duration, 1s, webkit ms spec);
+        div:before {
+          background: #333;
+        }
+      }
+    }
+  }
+
+}
+
+/*CANVAS*/
+
+canvas {
+  position: absolute;
+  max-width: 100%;
+  bottom: 0;
+  left: 0;
+  @include media-query(palm) {
+    .page-main-header & {
+      display: none;
+    }
+
+  }
+}
+
+.unsupported img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+
+

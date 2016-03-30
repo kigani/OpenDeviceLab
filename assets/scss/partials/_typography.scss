@@ -1,0 +1,47 @@
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+body {
+  font-family: Arial, no-serif;
+  font-size: 18px;
+  color: $text-color-light;
+
+  line-height: 1.4em;
+}
+
+/*MAIN HEADINGS*/
+.main-intro {
+  font-size: 30px;
+  color: $heading-color-light;
+  font-weight: bold;
+  line-height: 1.4em;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.4em;
+  color: $heading-color-light;
+  font-weight: bold;
+}
+
+.section-heading {
+  font-size: 28px;
+  line-height: 1.2em;
+  font-weight: bold;
+}
+
+/*LINKS*/
+
+a {
+  text-decoration: none;
+  color: $links-color-light;
+  &:hover {
+    text-decoration: underline;
+  }
+}
